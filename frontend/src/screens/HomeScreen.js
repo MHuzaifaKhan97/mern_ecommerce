@@ -33,7 +33,7 @@ const products = [
         price: 89.99,
         countInStock: 4,
         rating: 4.5,
-        numReviews: 4,
+        numReviews: 2,
     },
     {
         _id: '2',
@@ -43,9 +43,9 @@ const products = [
         brand: 'apple',
         categories: 'Electronics',
         price: 89.99,
-        countInStock: 4,
-        rating: 4.5,
-        numReviews: 4,
+        countInStock: 12,
+        rating: 3.5,
+        numReviews: 7,
     },
     {
         _id: '3',
@@ -56,7 +56,7 @@ const products = [
         categories: 'Electronics',
         price: 89.99,
         countInStock: 4,
-        rating: 4.5,
+        rating: 2.5,
         numReviews: 4,
     },
     {
@@ -67,8 +67,8 @@ const products = [
         brand: 'samsung',
         categories: 'Electronics',
         price: 89.99,
-        countInStock: 4,
-        rating: 4.5,
+        countInStock: 3,
+        rating: 5,
         numReviews: 4,
     },
     {
@@ -80,8 +80,8 @@ const products = [
         categories: 'Electronics',
         price: 89.99,
         countInStock: 4,
-        rating: 4.5,
-        numReviews: 3.5,
+        rating: 5,
+        numReviews: 10,
     },
     {
         _id: '6',
