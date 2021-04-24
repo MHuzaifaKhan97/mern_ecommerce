@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
 import { Row, Col, ListGroup, Image, Button, Card, Form } from 'react-bootstrap'
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const CartScreen = ({ match, location, history }) => {
 
@@ -24,8 +24,9 @@ const CartScreen = ({ match, location, history }) => {
         }
     }, [dispatch, productId, match])
 
-    const removeFromCartHandler = () => {
-        console.log('removed');
+    const removeFromCartHandler = (id) => {
+        console.log('Removed From Cart');
+        dispatch(removeFromCart(id));
     }
     const checkoutHandler = () => {
         // if login goto shipping, if not logged in goto login
