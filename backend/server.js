@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import colors from 'colors';
 import connectDB from './config/db.js';
 import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 import {notFound, errorHandler } from './middleware/errorMiddleware.js';
 
 dotenv.config();
@@ -11,6 +12,8 @@ connectDB();
 
 const app = express();
 
+// allow json data in body for login, signup and more..
+app.use(express.json());
 
 // Test Middleware
 // app.use((req,res,next) => {
@@ -27,6 +30,7 @@ app.get('/', (req,res) => {
 })
 
 app.use('/api/products',productRoutes)
+app.use('/api/users',userRoutes)
 
 // 404 Not Found Middleware
 app.use(notFound)
