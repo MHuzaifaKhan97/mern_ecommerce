@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
@@ -22,7 +22,7 @@ const CartScreen = ({ match, location, history }) => {
         } else {
 
         }
-    }, [dispatch, productId, match])
+    }, [dispatch, productId, match,qty])
 
     const removeFromCartHandler = (id) => {
         console.log('Removed From Cart');
@@ -36,7 +36,7 @@ const CartScreen = ({ match, location, history }) => {
     return <Row>
         <Col md={8}>
             <h1>Shopping Cart</h1>
-            {cartItems.length != 0 ?
+            {cartItems.length !== 0 ?
                 <ListGroup variant='flush'>
                     {cartItems.map((item) => {
                         return <ListGroup.Item key={item.product}>
