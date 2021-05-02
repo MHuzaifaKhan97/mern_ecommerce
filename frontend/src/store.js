@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { productDetailReducer, productListReducers } from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducer';
+import { orderCreateReducer } from './reducers/orderReducers';
 import { userLoginReducer, userRegisterReducer, userDetailsReducer, userUpdateProfileReducer } from './reducers/userReducers';
 
 const reducer = combineReducers({
@@ -13,6 +14,7 @@ const reducer = combineReducers({
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
     userUpdateProfile: userUpdateProfileReducer,
+    orderCreate: orderCreateReducer,
 });
 
 // get local cart item stored in local storage.
@@ -37,9 +39,11 @@ const paymentMethodFromStorage = localStorage.getItem('paymentMethod')
 
 
 const initialState = {
-    cart: { cartItems: cartItemFromStorage, 
-            shippingAddress: shippingAddressFromStorage, 
-            paymentMethod:paymentMethodFromStorage },
+    cart: {
+        cartItems: cartItemFromStorage,
+        shippingAddress: shippingAddressFromStorage,
+        paymentMethod: paymentMethodFromStorage
+    },
     userLogin: { userInfo: userInfoFromStorage },
 };
 
