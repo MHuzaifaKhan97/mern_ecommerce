@@ -34,6 +34,9 @@ app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
 
+// For Paypal. (but we don't have paypal account)
+app.get('/api/config/paypal', (req,res) => res.send(process.env.PAYPAL_CLIENT_ID))
+
 // 404 Not Found Middleware
 app.use(notFound)
 
