@@ -13,6 +13,7 @@ import ShippingScreen from './screens/ShippingScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
 import OrderScreen from './screens/OrderScreen';
+import UserListScreen from './screens/UserListScreen';
 const App = () => {
   return (
     <Router>
@@ -30,6 +31,7 @@ const App = () => {
           {/* /cart/:id? => ? means id is optional */}
           <Route exact path="/cart/:id?" component={CartScreen} />
           <Route path="/product/:id" component={ProductScreen} />
+          <Route path="/admin/userlist" component={UserListScreen} />
         </Container>
       </main>
       <Footer />
