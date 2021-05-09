@@ -1,4 +1,4 @@
-import { ORDER_CREATE_FAILED, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAILED, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_MY_FAILED, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_PAY_FAILED, ORDER_PAY_REQUEST, ORDER_PAY_RESET, ORDER_PAY_SUCCESS } from '../constants/orderConstants';
+import { ORDER_CREATE_FAILED, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAILED, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_MY_FAILED, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_RESET, ORDER_LIST_MY_SUCCESS, ORDER_PAY_FAILED, ORDER_PAY_REQUEST, ORDER_PAY_RESET, ORDER_PAY_SUCCESS } from '../constants/orderConstants';
 
 export const orderCreateReducer = (state = {}, action) => {
     switch (action.type) {
@@ -43,9 +43,9 @@ export const orderDetailsReducer = (state = { loading: true, orderItems: [], shi
 }
 
 
-export const orderPayReducer = (state = { }, action) => {
+export const orderPayReducer = (state = {}, action) => {
     switch (action.type) {
-        case ORDER_PAY_REQUEST: 
+        case ORDER_PAY_REQUEST:
             return {
                 loading: true,
             }
@@ -59,16 +59,16 @@ export const orderPayReducer = (state = { }, action) => {
                 loading: false,
                 error: action.payload
             }
-            case ORDER_PAY_RESET:
-                return {}
+        case ORDER_PAY_RESET:
+            return {}
         default: return state;
     }
 }
 
 
-export const orderListMyReducer = (state = { orders:[]}, action) => {
+export const orderListMyReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
-        case ORDER_LIST_MY_REQUEST: 
+        case ORDER_LIST_MY_REQUEST:
             return {
                 loading: true,
             }
@@ -82,6 +82,8 @@ export const orderListMyReducer = (state = { orders:[]}, action) => {
                 loading: false,
                 error: action.payload
             }
+        case ORDER_LIST_MY_RESET:
+            return { order: [] }
         default: return state;
     }
 }
