@@ -26,7 +26,6 @@ const authUser = asyncHandler(async (req, res) => {
     // res.send({ email, password });
 })
 
-
 // @desc Register a new user
 // @route Post /api/users
 // @access Public
@@ -62,7 +61,6 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 })
 
-
 // @desc Get user profile
 // @route Post /api/user/profile
 // @access Private
@@ -85,8 +83,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
     // res.send('Success');
 
 })
-
-
 
 // @desc Update user profile
 // @route PUT /api/user/profile
@@ -142,6 +138,46 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 })
 
+// @desc Get User By Id
+// @route Post /api/users/:id
+// @access Private/Admin
+const getUserById = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id).select('-password'); // - password means we don't need to fetch the password
+    if(user){
+        res.json(user);
+    }
+    else{
+        res.status(404);
+        throw new Error('User not found');
+    }
+})
+
+// @desc Update user
+// @route PUT /api/user/:id
+// @access Private/Admin
+const updateUser = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+
+    if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.isAdmin = req.body.isAdmin;
+
+        const updatedUser = await user.save();
+
+        res.json({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+        })
+
+    } else {
+        res.status(404)
+        throw new Error('User Not Found');
+    }
+})
+
 
 
 export {
@@ -151,4 +187,6 @@ export {
     updateUserProfile,
     getUsers,
     deleteUser,
+    getUserById,
+    updateUser,
 }
