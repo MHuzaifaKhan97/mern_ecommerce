@@ -26,10 +26,10 @@ const UserListScreen = ({ history }) => {
         } else {
             history.push('/login')
         }
-    }, [dispatch, history, successDelete])
+    }, [dispatch, history, successDelete, userInfo])
 
     const deleteHandler = (id) => {
-        if(window.confirm("Are you sure you want to delete?")){
+        if (window.confirm("Are you sure you want to delete?")) {
             dispatch(deleteUsers(id));
         }
     }
@@ -58,7 +58,7 @@ const UserListScreen = ({ history }) => {
                                     <td>{user.isAdmin ? (<i className="fas fa-check" style={{ color: 'green' }} ></i>) :
                                         (<i className="fas fa-times" style={{ color: 'red' }} ></i>)}</td>
                                     <td style={{ display: 'flex', justifyContent: 'space-around' }}>
-                                        <LinkContainer to={`/users/${user._id}/edit`} >
+                                        <LinkContainer to={`/admin/user/${user._id}/edit`} >
                                             <Button variant="light" className="btn-sm">
                                                 <i className="fas fa-edit" style={{ color: 'orange' }} ></i>
                                             </Button>
