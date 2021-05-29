@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAILED, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAILED } from '../constants/productConstants';
+import { PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAILED, PRODUCT_DETAILS_REQUEST, PRODUCT_DETAILS_SUCCESS, PRODUCT_DETAILS_FAILED, PRODUCT_DELETE_SUCCESS, PRODUCT_DELETE_FAILED, PRODUCT_DELETE_REQUEST } from '../constants/productConstants';
 
 // thunk middleware work here
 export const listProducts = () => async (dispatch) => {
@@ -33,6 +33,33 @@ export const listProductDetails = (id) => async (dispatch) => {
     catch (error) {
         dispatch({
             type: PRODUCT_DETAILS_FAILED,
+            payload: error.response && error.response.data.message ?
+                error.response.data.message :
+                error.message
+        })
+    }
+}
+
+export const deleteProduct = (id) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: PRODUCT_DELETE_REQUEST,
+        })
+        const { userLogin: { userInfo } } = getState();
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        await axios.delete(`/api/products/${id}`, config);
+        dispatch({
+            type: PRODUCT_DELETE_SUCCESS,
+        })
+    }
+    catch (error) {
+        dispatch({
+            type: PRODUCT_DELETE_FAILED,
             payload: error.response && error.response.data.message ?
                 error.response.data.message :
                 error.message

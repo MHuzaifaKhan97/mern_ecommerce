@@ -1,5 +1,5 @@
 
-import { ORDER_CREATE_FAILED, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAILED, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_MY_REQUEST, ORDER_PAY_FAILED, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from '../constants/orderConstants';
+import { ORDER_CREATE_FAILED, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DETAILS_FAILED, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_MY_FAILED, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_PAY_FAILED, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from '../constants/orderConstants';
 import axios from 'axios';
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -102,13 +102,13 @@ export const listMyOrders = () => async (dispatch, getState) => {
         }
         const { data } = await axios.get(`/api/orders/myorders`, config);
         dispatch({
-            type: ORDER_LIST_MY_REQUEST,
+            type: ORDER_LIST_MY_SUCCESS,
             payload: data,
         })
     }
     catch (error) {
         dispatch({
-            type: ORDER_LIST_MY_REQUEST,
+            type: ORDER_LIST_MY_FAILED,
             payload: error.response && error.response.data.message ?
                 error.response.data.message :
                 error.message
