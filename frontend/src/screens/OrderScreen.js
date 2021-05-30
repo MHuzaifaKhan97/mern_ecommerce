@@ -54,7 +54,7 @@ const OrderScreen = ({ match, history }) => {
 
     useEffect(() => {
 
-        if(!userInfo){
+        if (!userInfo) {
             history.push('/login')
         }
 
@@ -87,8 +87,19 @@ const OrderScreen = ({ match, history }) => {
 
     // For Paypal
     const successPaymentHandler = (paymentResult) => {
-        console.log(paymentResult);
-        dispatch(payOrder(orderId, paymentResult));
+        if(JSON.parse(localStorage.getItem('paymentMethod')) == "COD"){
+        console.log(userInfo.email)
+        const paymentResult = {
+            id: `order${orderId.substring(0,19)}`,
+            status:'paid',
+            update_time: Date.now(),
+            email_address:userInfo.email,
+        }
+            dispatch(payOrder(orderId));
+        }
+        else{
+            dispatch(payOrder(orderId, paymentResult));
+        }
     }
 
     const deliverHandler = () => {
@@ -194,17 +205,29 @@ const OrderScreen = ({ match, history }) => {
                             </Row>
                         </ListGroup.Item>
                         {
-                            !order.isPaid && (
+                            !order.isPaid && JSON.parse(localStorage.getItem('paymentMethod')) == "COD" && (
                                 <ListGroup.Item>
-                                    {loadingPay && <Loader />}
-                                    {!sdkReady ? <Loader /> : (
-                                        <PayPalButton
-                                            amount={order.totalPrice}
-                                            onSuccess={successPaymentHandler}
-                                        />
-                                    )}
+                                    <Button type='button' className='btn btn-block'
+                                        amount={order.totalPrice}
+                                        onClick={successPaymentHandler}
+                                    >Pay </Button>
+                                    
+
                                 </ListGroup.Item>
-                            )
+                            ) }
+                            {
+                                !order.isPaid && JSON.parse(localStorage.getItem('paymentMethod')) == "PayPal" && (
+                                    <ListGroup.Item>
+                                        {loadingPay && <Loader />}
+                                        {!sdkReady ? <Loader /> : (
+                                            <PayPalButton
+                                                amount={order.totalPrice}
+                                                onSuccess={successPaymentHandler}
+                                            />
+                                        )}
+                                    </ListGroup.Item>
+
+                                )
                         }
                         {loadingDeliver && <Loader />}
                         {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
