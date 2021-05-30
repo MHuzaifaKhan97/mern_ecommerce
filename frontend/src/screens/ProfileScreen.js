@@ -45,7 +45,7 @@ const ProfileScreen = ({ location, history }) => {
                 setEmail(user.email);
             }
         }
-    }, [dispatch, history, userInfo, user])
+    }, [dispatch, history, userInfo, user, loadingOrders])
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -121,11 +121,12 @@ const ProfileScreen = ({ location, history }) => {
                             <td>TOTAL</td>
                             <td>PAID</td>
                             <td>DELIVERED</td>
+                            <td>DETAILS</td>
                             <tr></tr>
                         </thead>
                         <tbody>
-                            {/* {
-                                orders.map((order) => (
+                            {
+                             orders &&  orders.map((order) => (
                                     <tr key={order._id}>
                                         <td>{order._id}</td>
                                         <td>{order.createdAt.substring(0, 10)}</td>
@@ -139,10 +140,10 @@ const ProfileScreen = ({ location, history }) => {
                                         </td>
                                     </tr>
                                 ))
-                            } */}
+                            }
                         </tbody>
                     </Table>
-                    <h3 className="text-center" >No Orders Found</h3>
+                    {/* <h3 className="text-center" >No Orders Found</h3> */}
                 
             </Col>
         </Row>
