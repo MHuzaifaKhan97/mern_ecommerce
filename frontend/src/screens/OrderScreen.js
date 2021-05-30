@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Row, Col, ListGroup, Image, Card, ListGroupItem } from 'react-bootstrap';
+import { Button, Row, Col, ListGroup, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { PayPalButton } from 'react-paypal-button-v2';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import Loader from '../components/Loader';
 import { getOrder, payOrder, deliverOrder } from '../actions/orderActions';
 import { ORDER_PAY_RESET, ORDER_DELIVERED_RESET } from '../constants/orderConstants';
@@ -83,18 +84,18 @@ const OrderScreen = ({ match, history }) => {
                 setSdkReady(true);
             }
         }
-    }, [dispatch, orderId, successPay, successDeliver, order])
+    }, [dispatch, orderId, successPay, successDeliver, order, history, userInfo])
 
     // For Paypal
     const successPaymentHandler = (paymentResult) => {
-        if(JSON.parse(localStorage.getItem('paymentMethod')) == "COD"){
+        if(JSON.parse(localStorage.getItem('paymentMethod')) === "COD"){
         console.log(userInfo.email)
-        const paymentResult = {
-            id: `order${orderId.substring(0,19)}`,
-            status:'paid',
-            update_time: Date.now(),
-            email_address:userInfo.email,
-        }
+        // const paymentResult = {
+        //     id: `order${orderId.substring(0,19)}`,
+        //     status:'paid',
+        //     update_time: Date.now(),
+        //     email_address:userInfo.email,
+        // }
             dispatch(payOrder(orderId));
         }
         else{
@@ -110,6 +111,8 @@ const OrderScreen = ({ match, history }) => {
         <>
             <h1>Order ID: {order._id}</h1>
             <Row>
+        <Meta title="E-Shop | Order Confirmation" />
+
                 <Col md={8}>
                     <ListGroup variant="flush" >
                         <ListGroup.Item>
@@ -205,7 +208,7 @@ const OrderScreen = ({ match, history }) => {
                             </Row>
                         </ListGroup.Item>
                         {
-                            !order.isPaid && JSON.parse(localStorage.getItem('paymentMethod')) == "COD" && (
+                            !order.isPaid && JSON.parse(localStorage.getItem('paymentMethod')) === "COD" && (
                                 <ListGroup.Item>
                                     <Button type='button' className='btn btn-block'
                                         amount={order.totalPrice}
@@ -216,7 +219,7 @@ const OrderScreen = ({ match, history }) => {
                                 </ListGroup.Item>
                             ) }
                             {
-                                !order.isPaid && JSON.parse(localStorage.getItem('paymentMethod')) == "PayPal" && (
+                                !order.isPaid && JSON.parse(localStorage.getItem('paymentMethod')) === "PayPal" && (
                                     <ListGroup.Item>
                                         {loadingPay && <Loader />}
                                         {!sdkReady ? <Loader /> : (

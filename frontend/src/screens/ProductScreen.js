@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Card, Button, Form, FormGroup } from 'react-bootstrap';
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { listProductDetails, createProductReview } from '../actions/productActions';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
+import Meta from '../components/Meta';
 
 const ProductScreen = ({ match, history }) => {
 
@@ -39,7 +40,7 @@ const ProductScreen = ({ match, history }) => {
         }
         dispatch(listProductDetails(match.params.id));
 
-    }, [dispatch, match, successProductReview, history])
+    }, [dispatch, match, successProductReview, history, userInfo])
 
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`);
@@ -61,6 +62,8 @@ const ProductScreen = ({ match, history }) => {
                 : error ? <Message variant="danger" >{error}</Message>
                     : (
                         <>
+                        <Meta title={product.name} />
+
                             <Row>
                                 <Col md={6}>
                                     <Image src={product.image} alt={product.name} fluid />

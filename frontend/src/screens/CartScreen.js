@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Message from '../components/Message'
+import Meta from '../components/Meta'
 import { Row, Col, ListGroup, Image, Button, Card, Form } from 'react-bootstrap'
 import { addToCart, removeFromCart } from '../actions/cartActions'
+
 
 const CartScreen = ({ match, location, history }) => {
 
@@ -34,6 +36,8 @@ const CartScreen = ({ match, location, history }) => {
     }
     console.log(cartItems);
     return <Row>
+            <Meta title="E-Shop | Cart" />
+
         <Col md={8}>
             <h1>Shopping Cart</h1>
             {cartItems.length !== 0 ?

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Button, Row, Col, ListGroup, Image } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions';
 
@@ -53,6 +54,8 @@ const PlaceOrderScreen = ({ history }) => {
     return (
         <>
             <CheckoutSteps step1 step2 step3 step4 />
+        <Meta title="E-Shop | Place Order" />
+
             <Row>
                 <Col md={8}>
                     <ListGroup variant="flush" >

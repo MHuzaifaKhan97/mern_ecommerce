@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import Loader from '../components/Loader';
 import { listUsers, deleteUsers } from '../actions/userActions';
 
@@ -35,6 +36,7 @@ const UserListScreen = ({ history }) => {
     }
     return (
         <>
+            <Meta title="E-Shop | Users" />
             <h1>Users</h1>
             {successDelete && <Message variant="success" >User Successfully Deleted</Message>}
             {loading ? <Loader /> : error ? <Message variant="danger" >{error}</Message> : (
