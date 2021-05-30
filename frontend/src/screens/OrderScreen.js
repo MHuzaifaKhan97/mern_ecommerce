@@ -109,7 +109,7 @@ const OrderScreen = ({ match, history }) => {
 
     return loading ? <Loader /> : error ? <Message variant="danger" > {error}</Message> :
         <>
-            <h1>Order ID: {order._id}</h1>
+            <h1  style={{paddingTop:'120px'}} >Order ID: {order._id}</h1>
             <Row>
         <Meta title="E-Shop | Order Confirmation" />
 
