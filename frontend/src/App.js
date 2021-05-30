@@ -25,6 +25,9 @@ const App = () => {
       <main className="py-3">
         <Container>
           <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/search/:keyword" component={HomeScreen}  />
+          <Route exact path="/page/:pageNumber" component={HomeScreen}/>
+          <Route exact path="/search/:keyword/page/:pageNumber" component={HomeScreen} />
           <Route path="/login" component={LoginScreen} />
           <Route path="/register" component={RegisterScreen} />
           <Route path="/profile" component={ProfileScreen} />
@@ -35,9 +38,11 @@ const App = () => {
           {/* /cart/:id? => ? means id is optional */}
           <Route exact path="/cart/:id?" component={CartScreen} />
           <Route path="/product/:id" component={ProductScreen} />
+          <Route path="/page/product/:id" component={ProductScreen} exact />
           <Route path="/admin/userlist" component={UserListScreen} />
           <Route path="/admin/user/:id/edit" component={UserEditScreen} />
-          <Route path="/admin/productlist" component={ProductListScreen} />
+          <Route path="/admin/productlist" component={ProductListScreen} exact />
+          <Route path="/admin/productlist/:pageNumber" component={ProductListScreen} exact />
           <Route path="/admin/product/:id/edit" component={ProductEditScreen} />
           <Route path="/admin/orderlist" component={OrderListScreen} />
         </Container>

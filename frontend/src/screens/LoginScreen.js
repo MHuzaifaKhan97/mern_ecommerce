@@ -6,6 +6,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { login } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
+import Meta from '../components/Meta';
 
 const LoginScreen = ({ location, history }) => {
 
@@ -32,6 +33,8 @@ const LoginScreen = ({ location, history }) => {
 
     return (
         <FormContainer>
+            <Meta title="E-Shop | Login" />
+
             <h1>Sign In</h1>
             {error && <Message variant="danger" >{error}</Message>}
             {loading && <Loader />}

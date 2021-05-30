@@ -3,6 +3,7 @@ import { Form, Button, Row, Col, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { LinkContainer } from 'react-router-bootstrap';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import Loader from '../components/Loader';
 import { getUserDetails, updateUserProfile } from '../actions/userActions';
 import { listMyOrders } from '../actions/orderActions';
@@ -30,7 +31,7 @@ const ProfileScreen = ({ location, history }) => {
 
 
     const orderListMy = useSelector(state => state.orderListMy);
-    const { loading: loadingOrders, error: errorOrders, orders } = orderListMy;
+    const { loading: loadingOrders, orders } = orderListMy;
 
     useEffect(() => {
         if (!userInfo) {
@@ -60,6 +61,8 @@ const ProfileScreen = ({ location, history }) => {
 
     return (
         <Row>
+            <Meta title="E-Shop | Profile" />
+
             <Col md={3}>
                 <h2>User Profile</h2>
                 {error && <Message variant="danger" >{error}</Message>}

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import Loader from '../components/Loader';
 import { listProductDetails, updateProduct } from '../actions/productActions';
 import FormContainer from '../components/FormContainer';
@@ -89,6 +90,8 @@ const ProductEditScreen = ({ history, match }) => {
 
     return (
         <>
+        <Meta title="E-Shop | Update Product" />
+
             <Link to='/admin/productlist' className='btn btn-light my-3'  >Go Back</Link>
             <FormContainer>
                 <h1>Update Product</h1>

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
+import Meta from '../components/Meta';
 import Loader from '../components/Loader';
 import { listOrders } from '../actions/orderActions';
 
@@ -26,6 +27,8 @@ const OrderListScreen = ({ history }) => {
 
     return (
         <>
+            <Meta title="E-Shop | Orders" />
+
             <h1>Orders</h1>
             {loading ? <Loader /> : error ? <Message variant="danger" >{error}</Message> : (
                 <Table striped bordered responsive hover className="table-sm" >
