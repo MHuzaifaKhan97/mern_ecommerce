@@ -60,7 +60,7 @@ const ProfileScreen = ({ location, history }) => {
     }
 
     return (
-        <Row>
+        <Row  style={{paddingTop:'120px'}}>
             <Meta title="E-Shop | Profile" />
 
             <Col md={3}>

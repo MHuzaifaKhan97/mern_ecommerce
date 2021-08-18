@@ -27,8 +27,9 @@ const ShippingScreen = ({ history }) => {
     return (
         <FormContainer>
         <Meta title="E-Shop | Shipping" />
+            <div  style={{paddingTop:'120px'}} ></div>
             <CheckoutSteps step1 step2 />
-            <h1>Shipping</h1>
+            <h1 >Shipping</h1>
 
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId="address">

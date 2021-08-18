@@ -30,7 +30,7 @@ const ProductListScreen = ({ history, match }) => {
     useEffect(() => {
         dispatch({ type: PRODUCT_CREATE_RESET });
 
-        if (!userInfo.isAdmin) {
+        if (!userInfo) {
             history.push('/login')
         }
 
@@ -58,7 +58,7 @@ const ProductListScreen = ({ history, match }) => {
     return (
         <>
             <Meta title="E-Shop | Products" />
-            <Row className="align-items-center">
+            <Row className="align-items-center"  style={{paddingTop:'120px'}}>
                 <Col>
                     <h1>Products</h1>
                 </Col>

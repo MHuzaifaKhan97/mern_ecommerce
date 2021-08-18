@@ -35,7 +35,7 @@ const CartScreen = ({ match, location, history }) => {
         history.push('/login?redirect=shipping')
     }
     console.log(cartItems);
-    return <Row>
+    return <Row style={{paddingTop:'120px'}} >
             <Meta title="E-Shop | Cart" />
 
         <Col md={8}>

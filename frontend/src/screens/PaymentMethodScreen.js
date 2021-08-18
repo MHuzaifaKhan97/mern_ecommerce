@@ -28,6 +28,7 @@ const PaymentMethodScreen = ({ history }) => {
     return (
         <FormContainer>
         <Meta title="E-Shop | Payments" />
+        <div  style={{paddingTop:'120px'}} ></div>
             <CheckoutSteps step1 step2 step3 />
             <h1>Payment Method</h1>
 

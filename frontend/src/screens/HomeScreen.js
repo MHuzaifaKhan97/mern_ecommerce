@@ -25,7 +25,7 @@ const HomeScreen = ({ match }) => {
     }, [dispatch, keyword, pageNumber])
 
     return (
-        <>
+        <div style={{marginTop:'110px'}} >
             <Meta title="Welcome to E-Shop | Home" />
             {!keyword ? <ProductCarousel /> : <Link to='/' className="btn btn-light">Go Back</Link> }
             <h1>Latest Products</h1>
@@ -47,7 +47,7 @@ const HomeScreen = ({ match }) => {
                         <Paginate pages={pages} page={page} keyword={keyword ? keyword : ''} />
                     </>
             }
-        </>
+        </div>
     )
 }
 

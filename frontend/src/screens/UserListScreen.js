@@ -37,7 +37,7 @@ const UserListScreen = ({ history }) => {
     return (
         <>
             <Meta title="E-Shop | Users" />
-            <h1>Users</h1>
+            <h1  style={{paddingTop:'120px'}} >Users</h1>
             {successDelete && <Message variant="success" >User Successfully Deleted</Message>}
             {loading ? <Loader /> : error ? <Message variant="danger" >{error}</Message> : (
                 <Table striped bordered responsive hover className="table-sm" >

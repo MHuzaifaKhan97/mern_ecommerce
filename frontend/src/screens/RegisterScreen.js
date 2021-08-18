@@ -43,7 +43,7 @@ const RegisterScreen = ({ location, history }) => {
         <FormContainer>
             <Meta title="E-Shop | Sign Up" />
 
-            <h1>Sign Up</h1>
+            <h1  style={{marginTop:'100px'}} >Sign Up</h1>
             {error && <Message variant="danger" >{error}</Message>}
             {message && <Message variant="danger" >{message}</Message>}
             {loading && <Loader />}

@@ -29,7 +29,7 @@ const OrderListScreen = ({ history }) => {
         <>
             <Meta title="E-Shop | Orders" />
 
-            <h1>Orders</h1>
+            <h1  style={{paddingTop:'120px'}}>Orders</h1>
             {loading ? <Loader /> : error ? <Message variant="danger" >{error}</Message> : (
                 <Table striped bordered responsive hover className="table-sm" >
                     <thead>

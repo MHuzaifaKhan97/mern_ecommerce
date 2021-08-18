@@ -53,8 +53,10 @@ const PlaceOrderScreen = ({ history }) => {
 
     return (
         <>
+            <div style={{ paddingTop: '120px' }} ></div>
+
             <CheckoutSteps step1 step2 step3 step4 />
-        <Meta title="E-Shop | Place Order" />
+            <Meta title="E-Shop | Place Order" />
 
             <Row>
                 <Col md={8}>
