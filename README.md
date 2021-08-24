@@ -1,1 +1,1 @@
-# E-Shop Web Application using MERN
+# E-Shop Web Application using React, Node, Express & MongoDB.
