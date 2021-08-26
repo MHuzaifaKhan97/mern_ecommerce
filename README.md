@@ -1,1 +1,1 @@
-# E-Shop Web Application using React, Node, Express & MongoDB.
+# E-Shop Web Application using React, NodeJS, ExpressJS & MongoDB.
